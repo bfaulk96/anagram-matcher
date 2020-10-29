@@ -7,5 +7,5 @@ node_modules/
 
 # Ignore artifacts:
 build/
-dist/
+lib/
 coverage/

@@ -3,8 +3,9 @@
   "version": "1.0.0",
   "description": "Checks sentences for anagram matches",
   "repository": "https://github.com/bfaulk96/anagram-matcher",
-  "main": "src/index.ts",
-  "author": "Brandon Faulkner",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "author": "bfaulk96",
   "license": "ISC",
   "keywords": [
     "anagram",
@@ -13,22 +14,33 @@
     "word",
     "letters"
   ],
+  "files": [
+    "lib/**/*"
+  ],
   "scripts": {
     "start": "ts-node src/index.ts",
     "build": "tsc",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest --config jestconfig.json",
+    "prepare" : "npm run build",
+    "prepublishOnly" : "npm test && npm run lint",
+    "preversion" : "npm run lint",
+    "version" : "npm run format && git add -A src",
+    "postversion" : "git push && git push --tags",
     "lint": "eslint --fix",
     "format": "prettier --write **/*.{js,ts}"
   },
   "devDependencies": {
+    "@types/jest": "^26.0.15",
     "@types/node": "^14.11.8",
     "@typescript-eslint/eslint-plugin": "^4.4.0",
     "@typescript-eslint/parser": "^4.4.0",
     "eslint": "^7.11.0",
     "eslint-config-prettier": "^6.12.0",
     "husky": "^4.3.0",
+    "jest": "^26.6.1",
     "lint-staged": "^10.4.0",
     "prettier": "^2.1.2",
+    "ts-jest": "^26.4.3",
     "typescript": "^4.0.3"
   },
   "husky": {
